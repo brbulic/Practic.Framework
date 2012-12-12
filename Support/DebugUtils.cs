@@ -28,6 +28,16 @@ namespace Practic
             Debug.WriteLine(_InvariantFormatter(InfoFormat, DateTime.Now, message));
         }
 
+        [Conditional("DEBUG")]
+        public static void Info(String format, params object[] args)
+        {
+            if (String.IsNullOrEmpty(format))
+                format = String.Empty;
+
+            var appende = String.Format(format, args);
+            Debug.WriteLine(_InvariantFormatter(InfoFormat, DateTime.Now, appende));
+        }
+
         private static String _InvariantFormatter(String format, params object[] args)
         {
             return String.Format(CultureInfo.InvariantCulture, format, args);
